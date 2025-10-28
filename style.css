@@ -95,6 +95,15 @@ nav ul li a:active {
 /* Desktop */
 @media screen and (min-width: 930px) {
 
+    nav {
+        display: block;
+        opacity: 1;
+        position: relative;
+        text-align: left;
+    }nav ul li {
+        border: none;
+    }
+
     section {
         display: inline-block;
         width: 30%;
