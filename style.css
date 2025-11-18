@@ -24,7 +24,7 @@ h6 {
   font-variation-settings: "wdth" 100;
 }
 
-.error () {
+.error {
   color: red;
   font-size: 14px;
   font-weight: bold;
