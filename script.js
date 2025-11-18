@@ -17,6 +17,7 @@ function toggleMenu(evt) {
 
 document.addEventListener("DOMContentLoaded", function () {
   var contactForm = document.getElementById("contactForm");
+  
   if (contactForm) {
     contactForm.addEventListener("submit", function (event) {
       // prevent default form submission
@@ -28,11 +29,41 @@ document.addEventListener("DOMContentLoaded", function () {
       const email = document.querySelector("#email").value;
       const message = document.querySelector("#message").value;
       const phone = document.querySelector("#phone").value;
+      const errorElement = document.querySelector(".error");
 
-      console.log(`Form submitted: ${firstName} ${lastName}`);
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+      //validate email format
+      if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        errorMsg.innerText = "Invalid email format.";
+        return;
+      }
+
+      // validate required fields
+      if (!firstName === "" && !lastName === "" && !email && === "" !message === "") {
+        errorMsg.innerText = "Please fill in all required fields.";
+        return;
+      }
+
+      // Build the mailto form
+      const subject = encodeURIComponent("Contact Form Submission from " ${firstName} ${lastName}");
+      const body = encodeURIComponent(
+        "Name: " ${firstName} ${lastName} "\n" +
+        "Email: " ${email} "\r\n" +
+        "Phone: " ${phone} "\r\n" +
+        `Message: ` ${message}
+      );
+
+      const recipients = "cawilliams03@batestech.edu";
+      const mailtoLink = "mailto:" ${recipients} "?subject=" ${subject} "&body=" ${body};
+
+        // submit form
+        errorMsg.innerText = ""; // Clear previous error messages
+
+    
       // reset form
-      document.getElementById("contactForm").requestFullscreen();
+      contactForm.reset();
     });
   }
 });
