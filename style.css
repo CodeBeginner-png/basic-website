@@ -1,8 +1,23 @@
+:root {
+  --overlay: rgba(0, 0, 0, 0.45);
+}
+
+/* Full-page background */
+body {
+  background-image: url("assets/images/Background-image-for-website.jpg");
+  background-size: cover; /* fill viewport while preserving aspect */
+  background-position: center; /* center the image */
+  background-repeat: no-repeat; /* don't tile */
+  background-attachment: fixed; /* optional: parallax-like effect on desktop */
+  background-color: #111; /* fallback color while image loads */
+}
+
+/* Reset / base */
 html,
 body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  height: 100%;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
@@ -51,7 +66,6 @@ h6 {
 }
 
 nav {
-  opacity: 0;
   display: none;
   position: absolute;
   width: 100%;
@@ -60,7 +74,7 @@ nav {
 }
 
 header button {
-  z-index: 1;
+  z-index: 1000;
   position: absolute;
   top: 10px;
   right: 10px;
@@ -85,7 +99,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  background-color: #444;
+  background-color: #222;
 }
 
 nav ul li a:active {
@@ -97,19 +111,28 @@ nav ul li a:active {
   section {
     display: inline-block;
     width: 45%;
+    vertical-align: top;
   }
 }
 
-/* Desktop */
+/* Desktop layout overrides */
 @media screen and (min-width: 930px) {
   nav {
     display: block;
-    opacity: 1;
     position: relative;
-    text-align: left;
+    top: auto;
+    left: auto;
+    background: transparent;
+  }
+  nav ul {
+    flex-direction: row;
+    align-items: center;
   }
   nav ul li {
     border: none;
+  }
+  nav ul li a {
+    padding: 8px 12px;
   }
 
   section {
@@ -121,16 +144,15 @@ nav ul li a:active {
     display: inline-block;
   }
 
+  /* Hide the toggle button on desktop */
   header button {
     display: none;
   }
+}
 
-  nav ul {
-    opacity: 1;
-    display: block;
-  }
-
-  nav ul li {
-    display: inline-block;
-  }
+/* Small accessibility/visual tweaks */
+header,
+nav,
+.hero {
+  -webkit-font-smoothing: antialiased;
 }
